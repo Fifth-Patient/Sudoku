@@ -1,3 +1,6 @@
+/**
+ * 矩阵和数据相关的功能
+ */
 const matrixToolkit = {
   // 初始化生成9个元素的一维数组
   makeRow(v = 0) {
@@ -22,4 +25,29 @@ const matrixToolkit = {
   },
 }
 
-module.exports = matrixToolkit;
+/**
+ * 宫坐标系工具
+ */
+
+const boxToolit = {
+  // Todo
+}
+
+// 工具集
+
+module.exports = class Tookit {
+
+  /**
+   * 矩阵和数据相关的功能
+   */
+  static get materix() {
+    return matrixToolkit;
+  }
+
+  /**
+   * 宫坐标系工具
+   */
+  static get box() {
+    return boxToolit;
+  }
+};

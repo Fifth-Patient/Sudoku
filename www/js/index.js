@@ -86,12 +86,12 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/js/index.js":
-/*!*************************!*\
-  !*** ./src/js/index.js ***!
-  \*************************/
+/***/ "./src/js/core/toolkit.js":
+/*!********************************!*\
+  !*** ./src/js/core/toolkit.js ***!
+  \********************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -99,63 +99,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var toolkit = __webpack_require__(/*! ./toolkit */ "./src/js/toolkit.js");
-
-var matrix = toolkit.makeMatrix();
-
-var Grid =
-/*#__PURE__*/
-function () {
-  function Grid(container) {
-    _classCallCheck(this, Grid);
-
-    this._$container = container;
-  }
-
-  _createClass(Grid, [{
-    key: "build",
-    value: function build() {
-      var matrix = toolkit.makeMatrix();
-      var rowGroupClasses = ["row_g_top", "row_g_middle", "row_g_bottom"];
-      var colGroupClasses = ["col_g_left", "col_g_center", "col_g_right"];
-      var $cells = matrix.map(function (rowValues) {
-        return rowValues.map(function (cellValue, colIndex) {
-          return $("<span>").addClass(colGroupClasses[colIndex % 3]).text(cellValue);
-        });
-      });
-      $divArray = $cells.map(function ($spanArray, rowIndex) {
-        return $("<div>").addClass("row").addClass(rowGroupClasses[rowIndex % 3]).append($spanArray);
-      });
-
-      this._$container.append($divArray);
-    }
-  }, {
-    key: "layout",
-    value: function layout() {
-      var width = $("span:first", this._$container).width();
-      $("span", this._$container).height(width).css({
-        "line-height": "".concat(width, "px"),
-        "font-size": width < 32 ? "".concat(width / 2, "px") : ""
-      });
-    }
-  }]);
-
-  return Grid;
-}();
-
-var grid = new Grid($('#container'));
-grid.build();
-grid.layout();
-
-/***/ }),
-
-/***/ "./src/js/toolkit.js":
-/*!***************************!*\
-  !*** ./src/js/toolkit.js ***!
-  \***************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
+/**
+ * 矩阵和数据相关的功能
+ */
 var matrixToolkit = {
   // 初始化生成9个元素的一维数组
   makeRow: function makeRow() {
@@ -192,7 +138,118 @@ var matrixToolkit = {
     return array;
   }
 };
-module.exports = matrixToolkit;
+/**
+ * 宫坐标系工具
+ */
+
+var boxToolit = {} // Todo
+// 工具集
+;
+
+module.exports =
+/*#__PURE__*/
+function () {
+  function Tookit() {
+    _classCallCheck(this, Tookit);
+  }
+
+  _createClass(Tookit, null, [{
+    key: "materix",
+
+    /**
+     * 矩阵和数据相关的功能
+     */
+    get: function get() {
+      return matrixToolkit;
+    }
+    /**
+     * 宫坐标系工具
+     */
+
+  }, {
+    key: "box",
+    get: function get() {
+      return boxToolit;
+    }
+  }]);
+
+  return Tookit;
+}();
+
+/***/ }),
+
+/***/ "./src/js/index.js":
+/*!*************************!*\
+  !*** ./src/js/index.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Grid = __webpack_require__(/*! ./ui/grid */ "./src/js/ui/grid.js");
+
+var grid = new Grid($('#container'));
+grid.build();
+grid.layout();
+
+/***/ }),
+
+/***/ "./src/js/ui/grid.js":
+/*!***************************!*\
+  !*** ./src/js/ui/grid.js ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// 生成九宫格
+var Toolkit = __webpack_require__(/*! ../core/toolkit */ "./src/js/core/toolkit.js");
+
+var Grid =
+/*#__PURE__*/
+function () {
+  function Grid(container) {
+    _classCallCheck(this, Grid);
+
+    this._$container = container;
+  }
+
+  _createClass(Grid, [{
+    key: "build",
+    value: function build() {
+      var matrix = Toolkit.materix.makeMatrix();
+      var rowGroupClasses = ["row_g_top", "row_g_middle", "row_g_bottom"];
+      var colGroupClasses = ["col_g_left", "col_g_center", "col_g_right"];
+      var $cells = matrix.map(function (rowValues) {
+        return rowValues.map(function (cellValue, colIndex) {
+          return $("<span>").addClass(colGroupClasses[colIndex % 3]).text(cellValue);
+        });
+      });
+      $divArray = $cells.map(function ($spanArray, rowIndex) {
+        return $("<div>").addClass("row").addClass(rowGroupClasses[rowIndex % 3]).append($spanArray);
+      });
+
+      this._$container.append($divArray);
+    }
+  }, {
+    key: "layout",
+    value: function layout() {
+      var width = $("span:first", this._$container).width();
+      $("span", this._$container).height(width).css({
+        "line-height": "".concat(width, "px"),
+        "font-size": width < 32 ? "".concat(width / 2, "px") : ""
+      });
+    }
+  }]);
+
+  return Grid;
+}();
+
+module.exports = Grid;
 
 /***/ })
 
