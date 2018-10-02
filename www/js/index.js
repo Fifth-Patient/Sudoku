@@ -91,9 +91,108 @@
   !*** ./src/js/index.js ***!
   \*************************/
 /*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var toolkit = __webpack_require__(/*! ./toolkit */ "./src/js/toolkit.js");
+
+var matrix = toolkit.makeMatrix();
+
+var Grid =
+/*#__PURE__*/
+function () {
+  function Grid(container) {
+    _classCallCheck(this, Grid);
+
+    this._$container = container;
+  }
+
+  _createClass(Grid, [{
+    key: "build",
+    value: function build() {
+      var matrix = toolkit.makeMatrix();
+      var rowGroupClasses = ["row_g_top", "row_g_middle", "row_g_bottom"];
+      var colGroupClasses = ["col_g_left", "col_g_center", "col_g_right"];
+      var $cells = matrix.map(function (rowValues) {
+        return rowValues.map(function (cellValue, colIndex) {
+          return $("<span>").addClass(colGroupClasses[colIndex % 3]).text(cellValue);
+        });
+      });
+      $divArray = $cells.map(function ($spanArray, rowIndex) {
+        return $("<div>").addClass("row").addClass(rowGroupClasses[rowIndex % 3]).append($spanArray);
+      });
+
+      this._$container.append($divArray);
+    }
+  }, {
+    key: "layout",
+    value: function layout() {
+      var width = $("span:first", this._$container).width();
+      $("span", this._$container).height(width).css({
+        "line-height": "".concat(width, "px"),
+        "font-size": width < 32 ? "".concat(width / 2, "px") : ""
+      });
+    }
+  }]);
+
+  return Grid;
+}();
+
+var grid = new Grid($('#container'));
+grid.build();
+grid.layout();
+
+/***/ }),
+
+/***/ "./src/js/toolkit.js":
+/*!***************************!*\
+  !*** ./src/js/toolkit.js ***!
+  \***************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-console.log(1);
+var matrixToolkit = {
+  // 初始化生成9个元素的一维数组
+  makeRow: function makeRow() {
+    var v = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var array = new Array(9);
+    array.fill(v);
+    return array;
+  },
+  // 初始化生成9*9的二维数组
+  makeMatrix: function makeMatrix() {
+    var _this = this;
+
+    var v = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    return Array.from({
+      length: 9
+    }, function () {
+      return _this.makeRow(v);
+    });
+  },
+
+  /**
+   * Fisher-Yates 洗牌算法
+   */
+  shuffle: function shuffle(array) {
+    var endIndex = array.length - 2;
+
+    for (var i = 0; i < endIndex; i++) {
+      var j = i + Math.floor(Math.random() * (array.length - i));
+      var _ref = [array[j], array[i]];
+      array[i] = _ref[0];
+      array[j] = _ref[1];
+    }
+
+    return array;
+  }
+};
+module.exports = matrixToolkit;
 
 /***/ })
 
