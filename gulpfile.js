@@ -9,14 +9,14 @@ const config = require('./webpack.config.js');
 gulp.task('webpack', () => {
   gulp.src('./src/js/**/*.js')
     .pipe(webpack(config))
-    .pipe(gulp.dest('./www/js/'))
+    .pipe(gulp.dest('./dist/js/'))
 })
 
 // 编译less=> css
 gulp.task('less', () => {
   gulp.src('./src/less/main.less')
     .pipe(less())
-    .pipe(gulp.dest('./www/css/'))
+    .pipe(gulp.dest('./dist/css/'))
 })
 
 gulp.task('watch', () => {
