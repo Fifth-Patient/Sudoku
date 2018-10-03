@@ -1,2 +1,4 @@
 /node_modules
-/www
+/dist
+www/js/index.js
+www/js/index.js.map
