@@ -1,9 +1,10 @@
 const gulp = require('gulp');
-const webpack = require('webpack-stream');
 const less = require('gulp-less');
+const imagemin = require('gulp-imagemin');
+const config = require('./webpack.config.js');
+const webpack = require('webpack-stream');
 const browserSync = require('browser-sync');
 const reload = browserSync.reload;
-const config = require('./webpack.config.js');
 
 // 转译Javascript
 gulp.task('webpack', () => {
@@ -21,14 +22,16 @@ gulp.task('less', () => {
     .pipe(browserSync.stream())
 })
 
-gulp.task('watch', () => {
-  gulp.watch('./src/less/**/*.less', ['less']);
-  gulp.watch('./src/js/**/*.js', ['webpack']);
+gulp.task('img', () => {
+  gulp.src('./src/img/*.jpg')
+    .pipe(imagemin())
+    .pipe(gulp.dest('./dist/img'))
+    .pipe(browserSync.stream())
 })
 
-gulp.task('default', ['webpack', 'less']);
+gulp.task('default', ['webpack', 'less', 'img']);
 
-gulp.task('server', ['webpack', 'less'], () => {
+gulp.task('server', ['webpack', 'less', 'img'], () => {
   browserSync.init({
     server: {
       baseDir: './'

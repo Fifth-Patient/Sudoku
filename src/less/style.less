@@ -14,7 +14,7 @@
 
 .container {
   padding-left: 5%;
-  
+
   .row {
     >span {
       display: inline-block;
@@ -42,7 +42,7 @@
         background: #eee;
       }
       &.empty {
-        color: white;
+        color: transparent;
       }
       &.mark1 {
         background: lightblue;
@@ -123,11 +123,15 @@
   z-index: 9999;
   padding-left: 0;
 
-  .row {
+  background: #fff;
+
+  .row 
     >span {
     width: @popupCellSize;
     height: @popupCellSize;
     line-height: @popupCellSize;
+    background: transparent;
+
     }
   }
 }
