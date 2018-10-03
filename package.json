@@ -4,12 +4,13 @@
   "description": "数独游戏，慕课网出品",
   "main": "index.js",
   "scripts": {
-    "build":"gulp",
-    "start":"gulp watch"
+    "build": "gulp",
+    "start": "gulp watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jquery": "^3.3.1",
     "yarn": "^1.10.1"
   },
   "devDependencies": {

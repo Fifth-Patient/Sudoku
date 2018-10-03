@@ -1,17 +1,19 @@
+const jQuery = require('jquery');
 const Grid = require('./ui/grid');
-const PopupNumbers = require('./ui/popupnumbers')
+const PopupNumbers = require('./ui/popupnumbers');
+
+window.$ = jQuery;
 
 const grid = new Grid($('#container'));
-grid.build();
-grid.layout();
-
 const popupNumbers = new PopupNumbers($("#popupNumbers"));
 
+grid.build();
+grid.layout();
 grid.bindPopup(popupNumbers);
 
 
 $("#check").on("click", e => {
-  if(grid.check()) {
+  if (grid.check()) {
     alert("successed!!");
   }
 });
