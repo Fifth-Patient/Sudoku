@@ -86,7 +86,7 @@ class Checker {
 
   checkBoxes() {
     for (let boxIndex = 0; boxIndex < 9; boxIndex++) {
-      const boxes = Toolkit.box.getBoxCells(matrix, boxIndex);
+      const boxes = Toolkit.box.getBoxCells(this._matrix, boxIndex);
       const marks = checkArray(boxes);
       for (let cellIndex = 0; cellIndex < 9; cellIndex++) {
         if (!marks[cellIndex]) {

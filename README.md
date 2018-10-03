@@ -36,3 +36,13 @@
 - **抽取宫数据** —— 寻找关系
 
 ![脚本目录结构](./markdown-img/js-dir.jpg)
+
+## 随机生成
+
+....
+
+## 检查算法
+
+## Api
+- `Array.fill()`
+- `Array.map()`

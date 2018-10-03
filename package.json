@@ -4,7 +4,8 @@
   "description": "数独游戏，慕课网出品",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build":"gulp",
+    "start":"gulp watch"
   },
   "author": "",
   "license": "ISC",

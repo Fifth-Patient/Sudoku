@@ -1,6 +1,7 @@
 // 生成九宫格
 const Toolkit = require('../core/toolkit');
 const Sudoku = require('../core/sudoku');
+const Checker = require('../core/checker');
 
 class Grid {
   constructor(container) {
@@ -8,9 +9,6 @@ class Grid {
   }
 
   build() {
-    // const generator = new Generator();
-    // generator.generate();
-    // const matrix = generator.matrix;
 
     const sudouku = new Sudoku();
     sudouku.make();
@@ -48,9 +46,73 @@ class Grid {
       })
   }
 
+  /**
+   * 重建新的谜盘，开始新的一局
+   */
+  rebuild() {
+    this._$container.empty();
+    this.build();
+    this.layout();
+  }
+
+  /**
+   * 检查用户解密结果，成功则提示，失败则标记
+   */
+  check() {
+    // 从界面获取要检查的数据
+    const $rows = this._$container.children();
+    const data = $rows
+      .map((rowIndex, div) => {
+        return $(div).children()
+          .map((colIndex, span) => parseInt($(span).text()) || 0);
+      })
+      .toArray()
+      .map($data => $data.toArray());
+
+    const checker = new Checker(data);
+    if (checker.check()) {
+      return true;
+    }
+
+    // 检查不成功，进行标记
+    const marks = checker.matrixMarks;
+    this._$container.children()
+      .each((rowIndex, div) => {
+        $(div).children().each((colIndex, span) => {
+          const $span = $(span);
+          if ($span.is(".fixed") || marks[rowIndex][colIndex]) {
+            $span.removeClass("error");
+          } else {
+            $(span).addClass("error");
+          }
+        });
+      });
+  }
+
+  /**
+   * 重置当前谜盘当初始状态
+   */
+  reset() {
+    this._$container.find("span:not(.fixed)")
+      .removeClass("error mark1 mark2")
+      .addClass("empty")
+      .text(0);
+  }
+
+  /**
+   * 清理错误标记
+   */
+  clear() {
+    this._$container.find("span.error")
+      .removeClass("error");
+  }
+
   bindPopup(popupNumbers) {
     this._$container.on("click", "span", e => {
       const $cell = $(e.target);
+      if ($cell.is(".fixed")) {
+        return;
+      }
       popupNumbers.popup($cell);
     })
   }

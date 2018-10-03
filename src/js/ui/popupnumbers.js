@@ -5,13 +5,9 @@ class PopupNumbers {
     this._$panel = $panel.hide().removeClass("hidden");
 
     this._$panel.on("click", "span", e => {
-      console.log(1);
 
       const $cell = this._$targetCell;
       const $span = $(e.target);
-
-      console.log($cell, $span);
-
 
       if ($span.hasClass("mark1")) {
         // mark1、mark2 回填样式
@@ -46,6 +42,7 @@ class PopupNumbers {
   popup($cell) {
     this._$targetCell = $cell;
     const { left, top } = $cell.position();
+    
     this._$panel
       .css({
         left: `${left}px`,

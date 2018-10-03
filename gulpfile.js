@@ -26,12 +26,12 @@ gulp.task('watch', () => {
 
 gulp.task('default', ['webpack', 'less']);
 
-gulp.task('server', ['webpack', 'less'], () => {
-  browserSync({
-    server: {
-      baseDir: './'
-    }
-  })
-  gulp.watch('./src/js/**/*.js', ['webpack'], reload);
-  gulp.watch('./src/less/*.less', ['less'], reload);
-})
+// gulp.task('server', ['webpack', 'less'], () => {
+//   browserSync({
+//     server: {
+//       baseDir: './'
+//     }
+//   })
+//   gulp.watch('./src/js/**/*.js', ['webpack'], reload);
+//   gulp.watch('./src/less/*.less', ['less'], reload);
+// })
