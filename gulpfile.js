@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const webpack = require('webpack-stream');
 const less = require('gulp-less');
-const browserSync = require('browser-sync');//.create();
+const browserSync = require('browser-sync');
 const reload = browserSync.reload;
 const config = require('./webpack.config.js');
 

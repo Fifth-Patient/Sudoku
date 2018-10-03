@@ -4,7 +4,13 @@ class PopupNumbers {
   constructor($panel) {
     this._$panel = $panel.hide().removeClass("hidden");
 
-    this._$panel.on("click", "span", e => {
+
+    this._$panel.on("click", e => {
+
+      if ($(e.target).is(this._$panel)) {
+        this.hide();
+        return;
+      }
 
       const $cell = this._$targetCell;
       const $span = $(e.target);
@@ -41,14 +47,20 @@ class PopupNumbers {
 
   popup($cell) {
     this._$targetCell = $cell;
-    const { left, top } = $cell.position();
-    
-    this._$panel
+    let { left, top } = $cell.position();
+
+    const cellWidth = $cell.width();
+    const cellHeight = $cell.height();
+
+    left = left >= Math.floor(cellWidth * 7.5) ? Math.floor(cellWidth * 7) : left;
+    top = top >= Math.floor(cellHeight * 7.5) ? Math.floor(cellHeight * 7) : top;
+
+    this._$panel.children()
       .css({
         left: `${left}px`,
         top: `${top}px`
       })
-      .show();
+    this._$panel.show();
   }
 
   hide() {

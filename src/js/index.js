@@ -14,16 +14,22 @@ grid.bindPopup(popupNumbers);
 
 $("#check").on("click", e => {
   if (grid.check()) {
-    alert("successed!!");
+    if (confirm("successed!!  One More??")) {
+      grid.rebuild();
+    }
   }
 });
 $("#reset").on("click", e => {
-  grid.reset();
+  if (confirm("Are you sure reset?")) {
+    grid.reset();
+  }
 });
 $("#clear").on("click", e => {
   grid.clear();
 });
 
 $("#rebuild").on("click", e => {
-  grid.rebuild();
+  if (confirm("Are you sure rebuild?")) {
+    grid.rebuild();
+  }
 });
