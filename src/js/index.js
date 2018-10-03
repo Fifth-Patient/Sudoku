@@ -12,7 +12,7 @@ grid.bindPopup(popupNumbers);
 
 $("#check").on("click", e => {
   if(grid.check()) {
-    alert("成功");
+    alert("successed!!");
   }
 });
 $("#reset").on("click", e => {
