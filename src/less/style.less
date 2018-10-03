@@ -46,6 +46,12 @@
       &.empty {
         color: white;
       }
+      &.mark1 {
+        background: lightpink;
+      }
+      &.mark2 {
+        background: lightgreen;
+      }
     }
     
     &.row_g_bottom {
@@ -96,6 +102,18 @@
       &:last-child {
         border-right-width: 1px;
       }
+    }
+  }
+}
+
+.popup-num {
+  .container();
+
+  .row {
+    >span {
+    width: @popupCellSize;
+    height: @popupCellSize;
+    line-height: @popupCellSize;
     }
   }
 }
