@@ -6,7 +6,6 @@ class Generator {
   generate() {
     while (!this.interalGenerate()) {
       // Todo 
-      console.warn('try again');
 
     }
   }

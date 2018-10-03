@@ -1,1 +1,62 @@
 // 弹出面板
+
+class PopupNumbers {
+  constructor($panel) {
+    this._$panel = $panel.hide().removeClass("hidden");
+
+    this._$panel.on("click", "span", e => {
+      console.log(1);
+
+      const $cell = this._$targetCell;
+      const $span = $(e.target);
+
+      console.log($cell, $span);
+
+
+      if ($span.hasClass("mark1")) {
+        // mark1、mark2 回填样式
+        if ($cell.hasClass("mark1")) {
+          $cell.removeClass("mark1");
+        } else {
+          $cell.removeClass("makr2")
+            .addClass("mark1");
+        }
+      } else if ($span.hasClass("mark2")) {
+        if ($cell.hasClass("mark2")) {
+          $cell.removeClass("mark2");
+        } else {
+          $cell.removeClass("makr1")
+            .addClass("mark2");
+        }
+      } else if ($span.hasClass("empty")) {
+        // empty，取消数字填写，取消mark
+        $cell.text(0)
+          .removeClass("mark1")
+          .removeClass("mark2")
+          .addClass("empty");
+      } else {
+        $cell.removeClass("empty").text($span.text());
+        // 1-9 填数字        
+      }
+
+      this.hide();
+    })
+  }
+
+  popup($cell) {
+    this._$targetCell = $cell;
+    const { left, top } = $cell.position();
+    this._$panel
+      .css({
+        left: `${left}px`,
+        top: `${top}px`
+      })
+      .show();
+  }
+
+  hide() {
+    this._$panel.hide();
+  }
+}
+
+module.exports = PopupNumbers;

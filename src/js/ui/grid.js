@@ -11,7 +11,7 @@ class Grid {
     // const generator = new Generator();
     // generator.generate();
     // const matrix = generator.matrix;
-    
+
     const sudouku = new Sudoku();
     sudouku.make();
     const matrix = sudouku.puzzleMatrix;
@@ -46,6 +46,13 @@ class Grid {
         "line-height": `${width}px`,
         "font-size": width < 32 ? `${width / 2}px` : ""
       })
+  }
+
+  bindPopup(popupNumbers) {
+    this._$container.on("click", "span", e => {
+      const $cell = $(e.target);
+      popupNumbers.popup($cell);
+    })
   }
 }
 
