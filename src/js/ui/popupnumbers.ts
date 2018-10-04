@@ -1,6 +1,10 @@
 // 弹出面板
 
 class PopupNumbers {
+
+  private _$panel;
+  private _$targetCell;
+
   constructor($panel) {
     this._$panel = $panel.hide().removeClass("hidden");
 

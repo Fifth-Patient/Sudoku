@@ -26,12 +26,17 @@ function checkArray(array) {
   return marks;
 }
 
-const Toolkit = require('./toolkit');
+import Toolkit from './toolkit';
 
 // 输入：matrix，用户完成的数独数据，9 × 9
 // 处理：对natrix 行、列、宫进行检查，并填写marks
 // 输出：检查是否成功，marks
 class Checker {
+
+  private _matrix;
+  private _matrixMarks;
+  private _success: boolean = false;
+
   constructor(matrix) {
     this._matrix = matrix;
     this._matrixMarks = Toolkit.matrix.makeMatrix(true);

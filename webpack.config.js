@@ -8,19 +8,22 @@ module.exports = {
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js']
+    extensions: ['.ts']
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.ts$/,
         exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          }
-        }
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015'],
+            }
+          },
+          'ts-loader'
+        ]
       }
     ]
   }

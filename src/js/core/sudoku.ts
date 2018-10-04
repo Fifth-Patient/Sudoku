@@ -6,6 +6,10 @@
 import Generator from './generator';
 
 class Sudoku {
+
+  solutionMatrix;
+  puzzleMatrix;
+
   constructor() {
     // 生成完成的解决方案
     const generator = new Generator();

@@ -8,7 +8,7 @@ const reload = browserSync.reload;
 
 // 转译Javascript
 gulp.task('webpack', () => {
-  gulp.src('./src/js/**/*.js')
+  return gulp.src('./src/js/**/*.ts')
     .pipe(webpack(config))
     .pipe(gulp.dest('./dist/js/'))
     .pipe(browserSync.stream())
@@ -16,7 +16,7 @@ gulp.task('webpack', () => {
 
 // 编译less=> css
 gulp.task('less', () => {
-  gulp.src('./src/less/main.less')
+  return gulp.src('./src/less/main.less')
     .pipe(less())
     .pipe(gulp.dest('./dist/css/'))
     .pipe(browserSync.stream())

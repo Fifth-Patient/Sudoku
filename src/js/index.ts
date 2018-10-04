@@ -2,8 +2,6 @@ import jQuery from 'jquery'
 import Grid from './ui/grid'
 import PopupNumbers from './ui/popupnumbers'
 
-const $ = jQuery;
-
 const grid = new Grid($('#container'));
 const popupNumbers = new PopupNumbers($("#popupNumbers"));
 

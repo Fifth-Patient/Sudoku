@@ -3,6 +3,9 @@ import Toolkit from './toolkit';
 
 class Generator {
 
+  matrix: any;
+  orders: any;
+
   generate() {
     while (!this.interalGenerate()) {
       // Todo 
