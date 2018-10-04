@@ -1,11 +1,12 @@
-// 弹出面板
+import $ from 'jquery'
 
+// 弹出面板
 class PopupNumbers {
 
-  private _$panel;
-  private _$targetCell;
+  private _$panel: JQuery = $();
+  private _$targetCell: JQuery = $();
 
-  constructor($panel) {
+  constructor($panel: JQuery) {
     this._$panel = $panel.hide().removeClass("hidden");
 
 
@@ -49,12 +50,12 @@ class PopupNumbers {
     })
   }
 
-  popup($cell) {
+  popup($cell: JQuery) {
     this._$targetCell = $cell;
     let { left, top } = $cell.position();
 
-    const cellWidth = $cell.width();
-    const cellHeight = $cell.height();
+    const cellWidth: any = $cell.width();
+    const cellHeight: any = $cell.height();
 
     left = left >= Math.floor(cellWidth * 7.5) ? Math.floor(cellWidth * 7) : left;
     top = top >= Math.floor(cellHeight * 7.5) ? Math.floor(cellHeight * 7) : top;

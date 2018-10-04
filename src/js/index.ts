@@ -1,4 +1,4 @@
-import jQuery from 'jquery'
+import $ from 'jquery'
 import Grid from './ui/grid'
 import PopupNumbers from './ui/popupnumbers'
 

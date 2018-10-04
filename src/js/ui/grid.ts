@@ -1,25 +1,23 @@
 // 生成九宫格
-import Sudoku from '../core/sudoku'
-import Checker from '../core/checker'
+import $ from 'jquery';
+import Sudoku from '../core/sudoku';
+import Checker from '../core/checker';
+import Popupnumbers from './popupnumbers';
 
 class Grid {
 
-  private _$container;
+  private _$container: JQuery;
 
-  constructor(container) {
+  constructor(container: JQuery) {
     this._$container = container;
   }
 
   build() {
-
     const sudouku = new Sudoku();
     sudouku.make();
     const matrix = sudouku.puzzleMatrix;
-
     const rowGroupClasses = ["row_g_top", "row_g_middle", "row_g_bottom"];
-
     const colGroupClasses = ["col_g_left", "col_g_center", "col_g_right"];
-
     const $cells = matrix.map((rowValues) => rowValues
       .map((cellValue, colIndex) => {
         return $("<span>")
@@ -27,19 +25,17 @@ class Grid {
           .addClass(cellValue ? "fixed" : "empty")
           .text(cellValue);
       }));
-
-    $divArray = $cells.map(($spanArray, rowIndex) => {
+    const $divArray = $cells.map(($spanArray, rowIndex) => {
       return $("<div>")
         .addClass("row")
         .addClass(rowGroupClasses[rowIndex % 3])
         .append($spanArray);
     });
-
     this._$container.append($divArray);
   }
 
   layout() {
-    const width = $("span:first", this._$container).width();
+    const width: any = $("span:first", this._$container).width();
     $("span", this._$container)
       .height(width)
       .css({
@@ -62,13 +58,12 @@ class Grid {
    */
   check() {
     // 从界面获取要检查的数据
-    const $rows = this._$container.children();
-    const data = $rows
-      .map((rowIndex, div) => {
-        return $(div).children()
-          .map((colIndex, span) => parseInt($(span).text()) || 0);
-      })
+    const data: number[][] = this._$container.children()
       .toArray()
+      .map((div: HTMLElement): JQuery<number> => {
+        return $(div).children()
+          .map((colIndex, span) => parseInt($(span).text(), 10) || 0);
+      })
       .map($data => $data.toArray());
 
     const checker = new Checker(data);
@@ -109,7 +104,7 @@ class Grid {
       .removeClass("error");
   }
 
-  bindPopup(popupNumbers) {
+  bindPopup(popupNumbers: Popupnumbers) {
     this._$container.on("click", "span", e => {
       const $cell = $(e.target);
       if ($cell.is(".fixed")) {
