@@ -72,4 +72,4 @@ class PopupNumbers {
   }
 }
 
-module.exports = PopupNumbers;
+export default PopupNumbers;

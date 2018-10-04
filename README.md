@@ -46,3 +46,22 @@
 ## Api
 - `Array.fill()`
 - `Array.map()`
+
+# ts-version
+- 声明类成员
+- 声明类型
+
+## 常见类型
+
+||||
+|:-:|:-:|:-:|
+|Boolean|Tuple|Any|
+|Number|Enum|Void|
+|String|interface|Null|
+|Array|class|Undefined|
+|...|...|Never|
+
+
+## ts改写js - 步骤
+- 添加typescript配置文件
+- 改写webpack.config.js使其转译.ts文件

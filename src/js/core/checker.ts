@@ -99,4 +99,4 @@ class Checker {
 }
 
 
-module.exports = Checker;
+export default Checker;

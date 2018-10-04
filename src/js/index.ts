@@ -1,8 +1,8 @@
-const jQuery = require('jquery');
-const Grid = require('./ui/grid');
-const PopupNumbers = require('./ui/popupnumbers');
+import jQuery from 'jquery'
+import Grid from './ui/grid'
+import PopupNumbers from './ui/popupnumbers'
 
-window.$ = jQuery;
+const $ = jQuery;
 
 const grid = new Grid($('#container'));
 const popupNumbers = new PopupNumbers($("#popupNumbers"));

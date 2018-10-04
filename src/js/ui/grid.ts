@@ -1,7 +1,6 @@
 // 生成九宫格
-const Toolkit = require('../core/toolkit');
-const Sudoku = require('../core/sudoku');
-const Checker = require('../core/checker');
+import Sudoku from '../core/sudoku'
+import Checker from '../core/checker'
 
 class Grid {
   constructor(container) {
@@ -118,4 +117,4 @@ class Grid {
   }
 }
 
-module.exports = Grid;
+export default Grid;

@@ -1,5 +1,5 @@
 // 生成数独解决方案
-const Toolkit = require('./toolkit');
+import Toolkit from './toolkit';
 
 class Generator {
 
@@ -71,4 +71,4 @@ class Generator {
 
 }
 
-module.exports = Generator;
+export default Generator;
