@@ -55,14 +55,14 @@ class PopupNumbers {
     left = left >= Math.floor(cellWidth * 7.5) ? Math.floor(cellWidth * 7) : left;
     top = top >= Math.floor(cellHeight * 7.5) ? Math.floor(cellHeight * 7) : top;
 
-    let num = Math.round(1 + Math.random() * (4 - 1));
+    // let num = Math.round(1 + Math.random() * (4 - 1));
 
     this._$panel.children()
       .css({
         left: `${left}px`,
         top: `${top}px`,
-        background: `url(./dist/img/bg-${num}.jpg) no-repeat`,
-        backgroundSize: "100% 98%"
+        // background: `url(./dist/img/bg-${num}.jpg) no-repeat`,
+        // backgroundSize: "100% 98%"
       })
     this._$panel.show();
   }
