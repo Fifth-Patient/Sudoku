@@ -37,7 +37,7 @@ gulp.task('server', ['webpack', 'less', 'img'], () => {
       baseDir: './'
     }
   })
-  gulp.watch('./src/js/**/*.js', ['webpack']);
+  gulp.watch('./src/js/**/*.ts', ['webpack']);
   gulp.watch('./src/less/*.less', ['less']);
 
 })
