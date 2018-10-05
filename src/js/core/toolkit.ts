@@ -1,4 +1,3 @@
-
 export interface IBoxCorrd {
   boxIndex: number,
   cellIndex: number
@@ -8,6 +7,7 @@ export interface IRowcolCorrd {
   rowIndex: number,
   colIndex: number
 }
+
 /**
  * 宫坐标系工具
  */
@@ -15,7 +15,7 @@ const boxToolkit = {
   getBoxCells(matrix: number[][], boxIndex: number): number[] {
     const startRowIndex = Math.floor(boxIndex / 3) * 3;
     const startColIndex = boxIndex % 3 * 3;
-    const result = [];
+    const result: number[] = [];
 
     for (let cellIndex = 0; cellIndex < 9; cellIndex++) {
       const rowIndex = startRowIndex + Math.floor(cellIndex / 3);
@@ -46,16 +46,15 @@ class MatrixToolkit {
   // 初始化生成9个元素的一维数组
   static makeRow(): number[];
   static makeRow<T>(v: T): T[];
-  static makeRow(v: any = 0): any[] {
+  static makeRow(v: any = 0): number[] {
     const array = new Array(9);
-    array.fill(v);
-    return array;
+    return array.fill(v);
   }
 
   // 初始化生成9*9的二维数组
   static makeMatrix(): number[][];
   static makeMatrix<T>(v: T): T[][];
-  static makeMatrix(v: any = 0) {
+  static makeMatrix(v: any = 0): number[][] {
     return Array.from({ length: 9 }, () => this.makeRow(v))
   }
 

@@ -5,29 +5,14 @@ import PopupNumbers from './ui/popupnumbers'
 const grid = new Grid($('#container'));
 const popupNumbers = new PopupNumbers($("#popupNumbers"));
 
-grid.build();
+grid.build(1);
 grid.layout();
 grid.bindPopup(popupNumbers);
-
-
-$("#check").on("click", e => {
-  if (grid.check()) {
-    if (confirm("successed!!  One More??")) {
-      grid.rebuild();
-    }
-  }
-});
-$("#reset").on("click", e => {
-  if (confirm("Are you sure reset?")) {
-    grid.reset();
-  }
-});
-$("#clear").on("click", e => {
-  grid.clear();
+grid.interaction({
+  check: '#check',
+  reset: '#reset',
+  clear: '#clear',
+  rebuild: '#rebuild'
 });
 
-$("#rebuild").on("click", e => {
-  if (confirm("Are you sure rebuild?")) {
-    grid.rebuild();
-  }
-});
+

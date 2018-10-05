@@ -53,12 +53,19 @@ class PopupNumbers {
   popup($cell: JQuery) {
     this._$targetCell = $cell;
     let { left, top } = $cell.position();
+    let cellWidth: number | undefined;
+    let cellHeight: number | undefined;
 
-    const cellWidth: any = $cell.width();
-    const cellHeight: any = $cell.height();
+    if ($cell.width()) {
+      cellWidth = $cell.width();
+    }
 
-    left = left >= Math.floor(cellWidth * 7.5) ? Math.floor(cellWidth * 7) : left;
-    top = top >= Math.floor(cellHeight * 7.5) ? Math.floor(cellHeight * 7) : top;
+    if ($cell.height()) {
+      cellHeight = $cell.height();
+    }
+
+    left = left >= Math.floor(Number(cellWidth) * 7.5) ? Math.floor(Number(cellWidth) * 7) : left;
+    top = top >= Math.floor(Number(cellHeight) * 7.5) ? Math.floor(Number(cellHeight) * 7) : top;
 
     // let num = Math.round(1 + Math.random() * (4 - 1));
 

@@ -17,7 +17,7 @@ class Sudoku {
     this.solutionMatrix = generator.matrix;
   }
 
-  make(level: number = 5) {
+  make(level: number) {
     // const shouldRid = Math.random() * 9 < level;
     // 生成谜盘
     this.puzzleMatrix = this.solutionMatrix.map(row => {

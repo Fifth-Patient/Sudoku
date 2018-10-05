@@ -4,6 +4,13 @@ import Sudoku from '../core/sudoku';
 import Checker from '../core/checker';
 import Popupnumbers from './popupnumbers';
 
+interface buttonGroup {
+  check: string
+  reset: string
+  clear: string
+  rebuild: string
+}
+
 class Grid {
 
   private _$container: JQuery;
@@ -12,9 +19,9 @@ class Grid {
     this._$container = container;
   }
 
-  build() {
+  build(level: number = 5) {
     const sudouku = new Sudoku();
-    sudouku.make();
+    sudouku.make(level);
     const matrix = sudouku.puzzleMatrix;
     const rowGroupClasses = ["row_g_top", "row_g_middle", "row_g_bottom"];
     const colGroupClasses = ["col_g_left", "col_g_center", "col_g_right"];
@@ -35,12 +42,16 @@ class Grid {
   }
 
   layout() {
-    const width: any = $("span:first", this._$container).width();
+    let width: number | undefined;
+    if ($("span:first", this._$container).width()) {
+      width = $("span:first", this._$container).width();
+    }
+
     $("span", this._$container)
-      .height(width)
+      .height(`${width}px`)
       .css({
         "line-height": `${width}px`,
-        "font-size": width < 32 ? `${width / 2}px` : ""
+        "font-size": Number(width) < 32 ? `${Number(width) / 2}px` : ""
       })
   }
 
@@ -112,6 +123,36 @@ class Grid {
       }
       popupNumbers.popup($cell);
     })
+  }
+
+  /**
+   * 交互功能
+   */
+  interaction(configObj: buttonGroup): void {
+
+    $(configObj.check).on("click", e => {
+      if (this.check()) {
+        if (confirm("successed!!  One More??")) {
+          this.rebuild();
+        }
+      }
+    });
+
+    $(configObj.reset).on("click", e => {
+      if (confirm("Are you sure reset?")) {
+        this.reset();
+      }
+    });
+
+    $(configObj.clear).on("click", e => {
+      this.clear();
+    });
+
+    $(configObj.rebuild).on("click", e => {
+      if (confirm("Are you sure rebuild?")) {
+        this.rebuild();
+      }
+    });
   }
 }
 
