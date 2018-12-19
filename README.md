@@ -37,6 +37,23 @@
 
 ![脚本目录结构](./src/img/js-dir.png)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 随机生成
 
 ....
@@ -44,8 +61,20 @@
 ## 检查算法
 
 ## Api
-- `Array.fill()`
-- `Array.map()`
+- `Array.fill()` 填充数组
+- `Array.from()` 类数组对象、可遍历对象转为真正数组
+
+## ES5 Array数组方法
+- `forEach`      遍历
+- `map`          返回新数组
+- `fill`         过滤
+- `every`        全部逻辑判断通过返回true
+- `some`         一个逻辑判断通过返回true
+- `reduce`       组合数组元素生成单个值
+- `reduceRight`  从右开始
+- `indexOf`      搜索元素
+- `lastIndexOf`  从右搜索元素
+
 
 # ts-version
 - 声明类成员
@@ -65,3 +94,7 @@
 ## ts改写js - 步骤
 - 添加typescript配置文件
 - 改写webpack.config.js使其转译.ts文件
+
+
+# Todo
+- [] ts:any
